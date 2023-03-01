@@ -10,7 +10,7 @@ Clase hija:
 #include<iostream>
 #include<string>
 
-using std::cin;
+using std::cin; // declarativa -using- inutilizada.
 using std::cout;
 using std::string;
 
@@ -214,7 +214,8 @@ void Empleados::EmpleadoInfo()
 }
 
 
-int main(void){
+int main(void)
+{
     Estudiantes xEstudiante;
     Empleados xEmpleado;
     cout<<"****HERENCIA MULTIPLE EN C++****\n";

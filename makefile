@@ -1,2 +1,3 @@
-heritage.exe: Ejercicio1.cpp
-	g++ Ejercicio1.cpp -o heritage.exe
+heritage: Ejercicio1.cpp
+	g++ Ejercicio1.cpp \
+		-Wall -Wextra -Wpedantic -Werror -o heritage
