@@ -1,2 +1,7 @@
 .vscode
+
+# ejecutable de Windows
 heritage.exe
+
+# ejecutable de *nix
+heritage
