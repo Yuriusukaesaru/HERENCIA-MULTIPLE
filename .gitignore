@@ -1,2 +1,5 @@
+# Comentarios comienzan con símbolo gato # (numeral)
 .vscode
-heritage.exe
+
+# carpeta de ejecutables (Windows o Linux)
+bin/
