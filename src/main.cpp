@@ -1,178 +1,143 @@
 /*HERENCIA MULTIPLE PARTE 2 */
 
-/* Relajar tu mente significa poder "elevarte". En realidad vas más profundo, pero al mismo tiempo
- * te elevas. Debo decirte que me encantó tu proyecto. Tienes mucho talento, y salvo tu mejor
- * opinión, tienes madera de programador. Espero poder estar a la altura de lo que necesitas para
- * brillar.
- *
- * Es un proyecto muy interesante. Cuando te elevas, siempre puedes ver un cuadro más grande, un
- * big picture, y sabrías que un híbrido entre una "persona" y una "clase escolar" sería digna
- * de la película 'La Mosca'. Más que un objeto "compuesto" me parece la Abominación de Hulk jeje,
- * pero te salió al puro pedo. Mi experiencia con herencia múltiple me hace pensar que lo adecuado
- * es combinar objetos con objetos y no objetos con servicios o elementos intangibles (clases,
- * empleos, etc). Aquí se hubiera resuelto de manera más sencilla con herencia simple, pero lograste
- * el fenómeno :P y te felicito. De verdad me emocionan mucho tus posibilidades decidas lo que
- * decidas hacer
- *
- * En otro aspecto, quisiera ver cómo estás configurando VSCode. Hay una opción que te convierte
- * tabuladores en espacios. Esto resulta adecuado para visualizar tu código en editores no muy
- * pro (GitHub, Discord, etc) pero resulta contraproducente entre editores profesionales (Vim,
- * VSCode, etc), y casi fatal a la hora de producir un makefile (recuerda que la sintaxis está
- * basada en el caracter TAB: Nadie quiere que desaparezcan por "espacios". Te encargo mucho
- * homogeneizar la identación con Tabuladores reales para poder seguir trabajándolo. Por ahorita
- * con esto comenzamos para no abrumarnos */
+#include <iostream>
+#include <string>
 
-// Vamos a meter espacio entre #include y la librería
-#include<iostream>
-#include<string>
-
-/* Declarativa -using- inutilizada. Hay que eliminarla o usarla. Si instalas LLVM con Chocolatey
- * y compilas con clang++ verás que te brinca al compilar. */
-// using std::cin;
 using std::cout;
 using std::string;
 
-/* Te sugiero el nombre -Persona-, porqe "Personas" se referiría a VARIAS y no representa
- * fielmente al "objeto".
- *
- * Te recomiendo también nombres con guiones_bajos en lugar de tipo camelCase. Así está construido
- * el lenguaje. Además te recomiendo identaciones sencillas. Lo modificaré para trabajar a gusto */
-class Personas {
+class Persona {/*{{{*/
 	public:
-		void setNombre( string Nombre ) { NombrePersona = Nombre; }
-		void setApellido( string Apellido ) { ApellidoPersona = Apellido; }
-		void setGenero( string Genero ) { GeneroPersona = Genero; }
-		void setPeso( float Peso ) { PesoPersona = Peso; }
-		void setEstatura( float Estatura ) { EstaturaPesona = Estatura; }
-		void setEdad( int Edad ) { EdadPersona = Edad; }
-		string getNombrePersona() const { return NombrePersona; }
-		string getApellidoPersona() const { return ApellidoPersona; }
-		string getGeneroPersona() const { return GeneroPersona; }
-		float getPesoPersona() const { return PesoPersona; }
-		float getEstaturaPersona() const { return EstaturaPesona; }
-		int getEdadPersona() const { return EdadPersona; }
-		void PersonaInfo(); // Esto se debería llamar imprimir_info() o algo así
-	private:
-		/* Porque nombrePersona si la clase YA ES persona?
-		 *
-		 * En los atributos se recomienda que las variablew tengan su propio renglón */
-		string NombrePersona, ApellidoPersona, GeneroPersona;
-		float PesoPersona, EstaturaPesona;
-		int EdadPersona;
-};
+		void set_nombre( string _Nombre )		{ nombre = _Nombre; }
+		void set_apellido( string _Apellido )	{ apellido = _Apellido; }
+		void set_genero( string _Genero )		{ genero = _Genero; }
+		void set_peso( float _Peso )			{ peso = _Peso; }
+		void set_estatura( float _Estatura )	{ estatura = _Estatura; }
+		void set_edad( int _Edad )				{ edad = _Edad; }
 
-class Carreras {
-	//CARRERAS PARA EL ESTUDIANTE
-	/* El título anterior no me gusta. Se supone que apenas la vas a heredar para que los métodos
-	 * set y get formen parte de la clase hija Estudiantes. El confinarlo desde ahora "para
-	 * estudiantes" no lo hace muy bien visto */
-	public:
-		void setCarreraEstudiante(string Carrera) { CarreraEstudiante = Carrera; }
-		string getCarreraEstudiante()const { return CarreraEstudiante; }
-	private:
-		string CarreraEstudiante;
-};
+		string get_nombre() const { return nombre; }
+		string get_apellido() const { return apellido; }
+		string get_genero() const { return genero; }
+		float get_peso() const { return peso; }
+		float get_estatura() const { return estatura; }
+		int get_edad() const { return edad; }
 
-class Areas {
-	//AREAS DONDE TRABAJA EL EMPLEADO
-	public:
-		void setAreaEmpleado(string Area) { AreaEmpleado = Area; }
-		string getAreaEmpleado() const { return AreaEmpleado; }
-	private:
-		string AreaEmpleado;
-	};
+		void imprimir_info()
+		{
+			cout << "NOMBRE: "		<< get_nombre() << '\n'
+				 << "APELLIDO: "	<< get_apellido() << '\n'
+				 << "EDAD: "		<< get_edad() << '\n'
+				 << "PESO: "		<< get_peso() << '\n'
+				 << "ESTATURA: "	<< get_estatura() << '\n'
+				 << "GENERO: "		<< get_genero() << '\n';
+		}
 
-class Estudiantes: public Personas, public Carreras {
-	// Clase Hija Estudiantes
+	private:
+		string nombre;
+		string apellido;
+		string genero;
+		float peso;
+		float estatura;
+		std::int16_t edad;
+};/*}}}*/
+
+class Matriculado {/*{{{*/
 	public:
-		void setTurno(string Turno) { TurnoEstudiante = Turno; }
-        void setSemestre(int Semestre) { SemestreEstudiante = Semestre; }
-        string getTurnoEstudiante() const { return TurnoEstudiante; }
-        int getSemestreEstudiante() const { return SemestreEstudiante; }
-        void EstudianteInfo(); // Igual esto se debería llamar también imprimir_info()
+		void set_carrera( string _Carrera ) { carrera = _Carrera; }
+		string get_carrera() const { return carrera; }
+	private:
+		string carrera;
+};/*}}}*/
+
+class Empleado {/*{{{*/
+	public:
+		void set_area( string _Area) { area = _Area; }
+		string get_area() const { return area; }
+	private:
+		string area;
+};/*}}}*/
+
+class Estudiante: public Persona, public Matriculado {/*{{{*/
+	public:
+		void set_turno(string _Turno) { turno = _Turno; }
+        void set_semestre(int _Semestre) { semestre = _Semestre; }
+
+        string get_turno() const { return turno; }
+        int get_semestre() const { return semestre; }
+
+        void imprimir_info() {
+			Persona::imprimir_info();
+			cout	<< "CARRERA: "	<< get_carrera() << '\n'
+					<< "SEMESTRE: "	<< get_semestre() << '\n'
+					<< "TURNO: "	<< get_turno() <<'\n';
+		}
+
     private:
-        string TurnoEstudiante;
-        int SemestreEstudiante;
-};
+        string turno;
+        int semestre;
+};/*}}}*/
 
-class Empleados: public Personas, public Areas
-{
+class Trabajador: public Persona, public Empleado {/*{{{*/
 	public:
-		void setSueldoEmpleado(float Sueldo) { SueldoEmpleado = Sueldo; }
-		void setFechaIngreso(string Ingreso) { FechaIngresoEmpleado = Ingreso; }
-        float getSueldoEmpledo() const { return SueldoEmpleado; }
-        string getFechaEmpleado() const { return FechaIngresoEmpleado; }
-        void EmpleadoInfo();
-    private:
-        float SueldoEmpleado;
-        string FechaIngresoEmpleado;
-};
+		void set_sueldo( float _Sueldo ) { sueldo = _Sueldo; }
+		void set_fecha_ingreso( string _Fecha ) { fecha_ingreso = _Fecha; }
 
-//METODOS
-void Personas::PersonaInfo() 
+		float get_sueldo() const { return sueldo; }
+		string get_fecha_ingreso() const { return fecha_ingreso; }
+
+		void EmpleadoInfo()
+		{
+			Persona::imprimir_info();
+			cout	<< "AREA: "				<< get_area() << '\n'
+					<< "SUELDO: "			<< get_sueldo() << '\n'
+					<< "FECHA DE INGRESO: " << get_fecha_ingreso(); 
+		}
+
+	  private:
+		float sueldo;
+		string fecha_ingreso;
+};/*}}}*/
+
+int main()/*{{{*/
 {
-            cout<<"NOMBRE: "<< getNombrePersona() << '\n'
-                <<"APELLIDO: "<< getApellidoPersona() << '\n'
-                <<"EDAD: "<< getEdadPersona() << '\n'
-                <<"PESO: "<< getPesoPersona() << '\n'
-                <<"ESTATURA: "<< getEstaturaPersona() << '\n'
-                <<"GENERO: "<<getGeneroPersona() << '\n';
-}
+    Estudiante estudiante;
+    Trabajador trabajador;
 
-void Estudiantes::EstudianteInfo()
-{
-            PersonaInfo();
-            cout<<"CARRERA: "<< getCarreraEstudiante() << '\n'
-                <<"SEMESTRE: "<< getSemestreEstudiante() << '\n'
-                <<"TURNO: " << getTurnoEstudiante() <<'\n';
-}
+    cout << "****HERENCIA MULTIPLE EN C++****\n\n";
 
-void Empleados::EmpleadoInfo()
-{
-            PersonaInfo();
-            cout<<"AREA: "<< getAreaEmpleado() << '\n'
-                <<"SUELDO: " << getSueldoEmpledo() << '\n'
-                <<"FECHA DE INGRESO: " << getFechaEmpleado(); 
-}
+	// ESTUDIANTE
+    estudiante.set_nombre("JULIO");
+    estudiante.set_apellido("APELLIDO");
+    estudiante.set_genero("MASCULINO");
+    estudiante.set_edad(18);
+    estudiante.set_peso(85.50);
+    estudiante.set_estatura(1.75);
+    estudiante.set_carrera("INGENIERIA EN SOFTWARE");
+    estudiante.set_semestre(1);
+    estudiante.set_turno("MATUTINO");
 
+    cout << "INFORMACION PERSONAL DEL ESTUDIANTE: \n";
+    estudiante.Persona::imprimir_info();
 
-int main(void)
-{
-    Estudiantes xEstudiante;
-    Empleados xEmpleado;
-    cout<<"****HERENCIA MULTIPLE EN C++****\n";
+    cout << "\n\nINFORMACION COMPLETA DEL ESTUDIANTE: \n";
+	estudiante.Estudiante::imprimir_info();
 
-    xEstudiante.setNombre("JULIO");
-    xEstudiante.setApellido("APELLIDO");
-    xEstudiante.setGenero("MASCULINO");
-    xEstudiante.setEdad(18);
-    xEstudiante.setPeso(85.50);
-    xEstudiante.setEstatura(1.75);
-    xEstudiante.setCarreraEstudiante("INGENIERIA EN SOFTWARE");
-    xEstudiante.setSemestre(1);
-    xEstudiante.setTurno("MATUTINO");
+	// TRABAJADOR
+    trabajador.set_nombre("ERNESTO");
+    trabajador.set_apellido("VAZQUEZ");
+    trabajador.set_genero("MASCULINO");
+    trabajador.set_edad(46);
+    trabajador.set_peso(90.40);
+    trabajador.set_estatura(1.90);
+    trabajador.set_area("DOCENCIA");
+    trabajador.set_sueldo(1200);
+    trabajador.set_fecha_ingreso("14-09-1987");
 
+    cout << "\n\nINFORMACION PERSONAL DEL EMPLEADO: \n";
+    trabajador.Persona::imprimir_info();
 
-    cout<<"INFORMACION PERSONAL DEL ESTUDIANTE: \n";
-        xEstudiante.PersonaInfo();
+    cout << "\n\nDATOS COMPLETOS DEL EMPLEADO: \n";
+    trabajador.Trabajador::imprimir_info();
 
-    cout<<"\n\nINFORMACION COMPLETA DEL ESTUDIANTE: \n";
-        xEstudiante.EstudianteInfo();
-
-    xEmpleado.setNombre("ERNESTO");
-    xEmpleado.setApellido("VAZQUEZ");
-    xEmpleado.setGenero("MASCULINO");
-    xEmpleado.setEdad(46);
-    xEmpleado.setPeso(90.40);
-    xEmpleado.setEstatura(1.90);
-    xEmpleado.setAreaEmpleado("DOCENCIA");
-    xEmpleado.setSueldoEmpleado(1200);
-    xEmpleado.setFechaIngreso("14-09-1987");
-
-    cout<<"\n\nINFORMACION PERSONAL DEL EMPLEADO: \n";
-        xEmpleado.PersonaInfo();
-
-    cout<<"\n\nDATOS COMPLETOS DEL EMPLEADO: \n";
-        xEmpleado.EmpleadoInfo();
-
-}
+	std::cout << '\n';
+}/*}}}*/
