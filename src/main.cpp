@@ -85,7 +85,7 @@ class Trabajador: public Persona, public Empleado {/*{{{*/
 		float get_sueldo() const { return sueldo; }
 		string get_fecha_ingreso() const { return fecha_ingreso; }
 
-		void EmpleadoInfo()
+		void imprimir_info()
 		{
 			Persona::imprimir_info();
 			cout	<< "AREA: "				<< get_area() << '\n'
@@ -120,7 +120,7 @@ int main()/*{{{*/
     estudiante.Persona::imprimir_info();
 
     cout << "\n\nINFORMACION COMPLETA DEL ESTUDIANTE: \n";
-	estudiante.Estudiante::imprimir_info();
+	estudiante.imprimir_info();
 
 	// TRABAJADOR
     trabajador.set_nombre("ERNESTO");
@@ -137,7 +137,7 @@ int main()/*{{{*/
     trabajador.Persona::imprimir_info();
 
     cout << "\n\nDATOS COMPLETOS DEL EMPLEADO: \n";
-    trabajador.Trabajador::imprimir_info();
+trabajador.imprimir_info();
 
 	std::cout << '\n';
 }/*}}}*/
